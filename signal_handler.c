@@ -4,9 +4,11 @@
  */
 
 /**
- * Modified by:
+ * Modified by: Charles Feyen
  * 
  * Brief summary of modifications:
+ *  - added comment to describe how to send SIGINT
+ *  - removed exit on line 26, now must be killed with kill -SIGKILL <pid>
  */
 
 
@@ -19,8 +21,9 @@
  * @brief Signal handler for SIGINT - prints a message and exits
  */
 void handle_signal() {
+    // can be triggered by Ctrl-C or kill -SIGINT <pid> (where <pid> is the process id)
     printf("Received a signal\n");
-    exit(1);
+    // exit(1);
 }
 
 int main() {

@@ -1,0 +1,49 @@
+Signal Disposition:
+    the type of action preformed upon recieving the signal
+
+A signal handler is a function that is called upon recieving a signal.
+It is used to recieving communications from other processes
+
+Signal Dispositions:
+    - default - preforms the default action
+    - ignored - does nothing
+    - handled - preforms the action in a signal handler
+    - terminate - cancels the program
+    - core dump - terminates but also creates a log of the current memory state
+
+The kill function can send a signal to another process:
+    int pid = fork();
+    if (pid > 0) {
+        kill(SIGINT, pid);
+        sleep(1);
+    } else {
+        sleep(3);
+        puts("will never print, will be SIGINTed first");
+    }
+
+Ctrl-C sends a SIGINT to the forground process
+
+SIGINT:
+    kills the process (also is Ctrl-C)
+    terminates
+    can be overridden
+
+SIGTERM:
+    requests a process to terminate
+    terminates by default
+    can be overridden to allow for graceful shutdown
+
+SIGUSR1:
+    does nothing unless defined
+    terminates by default
+    can be overridden for custom actions
+
+SIGKILL:
+    Always kills a process
+    terminates
+    cannot be overridden (allows you to always have a way to terminate a process)
+
+SIGSTOP:
+    stops a process
+    handled
+    cannot be overridden (allows you to always have a way to pause a process)
